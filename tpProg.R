@@ -69,15 +69,10 @@ seleccionar_jugadores<-function(){
   cat("Nombre jugador 2: ")
   jugador_2 <- leer_palabra()
   texto_lento("!Perfecto!")
-  frase_con_nombres<- paste0("Van a jugar ", jugador_1, " contra ", jugador_2)
+  frase_con_nombres<- paste("Van a jugar", jugador_1, "contra", jugador_2)
   texto_lento(frase_con_nombres)
   texto_lento("Estan listos?")
-  
-  continuar<-""
-  while(tolower(continuar)!= "c"){
-    texto_lento("Ingresa la tecla (c) para continuar.")
-    continuar<-leer_palabra()
-  }
+  pausa()
   return(c(jugador_1, jugador_2))
 }
 ###########################################################################################
@@ -98,7 +93,6 @@ tirada_dado <- function(cantidad_dados){
   unos <- contar_dados(tirada, 1)
   cincos <- contar_dados(tirada, 5)
   resultado <- (unos * 100)+(cincos * 50)
-  #texto_lento("Sacaste", resultado, "puntos")
   dados_que_suman <- unos + cincos
   return(list(puntos = resultado, dados_usados = dados_que_suman))
 }
@@ -125,9 +119,7 @@ jugar_turno <- function(jugador, puntos_actuales){
     
     turno2(jugador, puntos_actuales, tiradas, acumulado, dados_disponibles)
     
-    cat("Tirar dados?\n - 1. Si\n - 2. No\n")
-    cat("Ingresa un numero entre (1) y (2):\n")
-    tirar <- leer_palabra()
+    tirar <- leer_opciones("¿Tirar dados?", "Si", "No")
     
     if (tirar=="2"){
       if((puntos_actuales + acumulado) > 1000){
@@ -177,11 +169,9 @@ while(juego_activo){
   
   titulo_ronda(nro_ronda,nombres, puntos_totales)
   
-  cat("Elige una opcion:\n - 1. Comenzar ronda\n - 2. Salir del juego\n")
-  cat("Ingrese un numero entre (1) y (2):\n")
-  opcion_menu <- leer_palabra()
+  opcion_menu <- leer_opciones("Elige una opcion:", "Comenzar ronda", "Salir del juego")
   
-  if (opcion_menu == "1"){
+  if (opcion_menu[1] == "1"){
     for(i in 1:2){
       puntos_ganados <- jugar_turno(jugador=nombres[i], puntos_actuales = puntos_totales[i])
       puntos_totales[i] <- puntos_totales[i] + puntos_ganados
@@ -189,6 +179,9 @@ while(juego_activo){
     if(i==2){
       pausa("\nRonda finalizada.\n")
     }
+    nro_ronda <- nro_ronda + 1
   }
-  nro_ronda <- nro_ronda + 1
+  else if(opcion_menu[1]=="2"){
+    break
+  }
 }
