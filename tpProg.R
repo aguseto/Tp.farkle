@@ -30,8 +30,8 @@
 # quedar en este script, pero sí la sentencia library para cargarlo.
 
 # Instalación
-install.packages("pak")
-pak::pkg_install("ee-unr/programacion-1/tp/farkle")
+#install.packages("pak")
+#pak::pkg_install("ee-unr/programacion-1/tp/farkle")
 library("farkle")
 
 #-------------------------------------------------------------------------------
@@ -158,6 +158,21 @@ jugar_turno <- function(jugador, puntos_actuales){
 
 ###########################################################################################
 ###########################################################################################
+verificar_final <- function(puntos_totales, nombres) {
+  if (puntos_totales[1] == 1000 && puntos_totales[2] == 1000) {
+    titulo("EMPATE")
+    return(TRUE)
+  } else if (puntos_totales[1] == 1000) {
+    titulo(paste("GANO", nombres[1]))
+    return(TRUE)
+  } else if (puntos_totales[2] == 1000) {
+    titulo(paste("GANO", nombres[2]))
+    return(TRUE)
+  }
+  return(FALSE)
+}
+###########################################################################################
+###########################################################################################
 
 nombres <- seleccionar_jugadores()
 puntos_totales <- c(0,0)
@@ -171,17 +186,19 @@ while(juego_activo){
   
   opcion_menu <- leer_opciones("Elige una opcion:", "Comenzar ronda", "Salir del juego")
   
-  if (opcion_menu[1] == "1"){
-    for(i in 1:2){
-      puntos_ganados <- jugar_turno(jugador=nombres[i], puntos_actuales = puntos_totales[i])
-      puntos_totales[i] <- puntos_totales[i] + puntos_ganados
-    }
-    if(i==2){
-      pausa("\nRonda finalizada.\n")
-    }
-    nro_ronda <- nro_ronda + 1
+  if (opcion_menu[1] == "1"){    for(i in 1:2){
+    puntos_ganados <- jugar_turno(jugador=nombres[i], puntos_actuales = puntos_totales[i])
+    puntos_totales[i] <- puntos_totales[i] + puntos_ganados
   }
-  else if(opcion_menu[1]=="2"){
+    
+    pausa("\nRonda finalizada.\n")
+    nro_ronda <- nro_ronda + 1
+    
+    hubo_ganador <- verificar_final(puntos_totales, nombres)
+    if(hubo_ganador){
+      break
+    }
+  } else if(opcion_menu[1]=="2"){
     break
   }
 }
