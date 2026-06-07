@@ -107,8 +107,8 @@ turno <- function(jugador, puntos, tiradas = 0, acumulado = 0, dados_disponibles
 #' @details
 #' Evalua si uno o ambos jugadores tienen 1000 puntos totales, entrega un TRUE o FALSE en funcion de ello, e imprime un mensaje de victoria en caso de ser verdadero. 
 #'
-#' @param puntos_totales 
-#' @param nombres 
+#' @param puntos_totales Vector numérico con la cantidad de puntos totales de los jugadores.
+#' @param nombres Vector de caracteres con los nombres de los jugadores.
 #'
 #' @returns
 #' BOOLEANO (TRUE O FALSE)
@@ -135,7 +135,7 @@ verificar_final <- function(puntos_totales, nombres) {
 #' Pantalla de inicio.
 #' 
 #' @description
-#' Muestra un mensaje de bienvenida junto con la introduccion y reglas del juego Farkle.
+#' Muestra un mensaje de bienvenida junto con la introducción y reglas del juego Farkle.
 #' 
 #' @returns
 #'
