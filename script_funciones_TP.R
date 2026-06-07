@@ -1,15 +1,15 @@
-#=========== DEFINICION DE FUNCIONES ===========================================
+#=========== DEFINICIÓN DE FUNCIONES ===========================================
 
-#' Seleccion de jugadores
+#' Selección de jugadores
 #' 
 #' @description
 #' Permite a los jugadores elegir el nombre que los va a representar durante el juego.
 #' 
 #' @details
-#' Emite un mensaje indicandole a los jugadores que deben ingresar sus nombres, luego espera el input de los jugadores, seguido de un mensaje de confirmacion de inicio.  
+#' Emite un mensaje indicandole a los jugadores que deben ingresar sus nombres, luego espera el input de los jugadores, seguido de un mensaje de confirmación de inicio.  
 #'  
 #' @returns
-#' Cadenas de texto concatenadas con los nombres de los jugadores.
+#' Vector de caracteres con los nombres de los jugadores.
 #' 
 seleccionar_jugadores<-function(){
   texto_lento("Antes de comenzar, ingrese los nombres de los jugadores\n")
@@ -26,15 +26,13 @@ seleccionar_jugadores<-function(){
 
 #===============================================================================
 
-#' Pantalla de informacion de ronda.
+#' Pantalla de información de ronda.
 #'
 #' @description 
-#' Muestra una pantalla con informacion sobre el numero de ronda actual y los nombres de los jugadores junto con sus respectivos puntos actuales.
+#' Muestra una pantalla con información sobre el número de ronda actual y los nombres de los jugadores junto con sus respectivos puntos actuales.
 #' 
-#' @param nro_ronda Valor numérico con el numero de ronda actual.
-#' 
-#' @param nombres Vector de caracteres con los nombres de los jugadores.
-#' 
+#' @param nro_ronda Valor numérico con el número de ronda actual.
+#' @param nombres Vector de caracteres con los nombres de los jugadores. 
 #' @param puntos_totales Vector numérico con los puntos totales. 
 #' 
 #' @example 
@@ -57,7 +55,7 @@ titulo_ronda <- function(nro_ronda, nombres, puntos_totales){
 #' @description
 #' Muestra una tirada con la cantidad de dados determinada y calcula la cantidad de puntos generados en la misma.
 #'
-#' @param cantidad_dados Valor numérico con el numero de dados a lanzar.
+#' @param cantidad_dados Valor numérico con el número de dados a lanzar.
 #'
 #' @returns
 #' 
@@ -77,20 +75,16 @@ tirada_dado <- function(cantidad_dados){
 
 #===============================================================================
 
-#' Pantalla de informacion de turno
+#' Pantalla de información de turno
 #' 
 #' @description
-#' Muestra una pantalla con el nombre del jugador e informacion sobre sus puntos totales, acumulados, numero de tirada actual y dados disponibles para lanzar.
+#' Muestra una pantalla con el nombre del jugador e información sobre sus puntos totales, acumulados, número de tirada actual y dados disponibles para lanzar.
 #'
 #' @param jugador Caracteres con el nombre del jugador.
-#' 
-#' @param puntos  Valor numerico con los puntos totales actuales del jugador.
-#' 
-#' @param tiradas Valor numerico con el numero de tirada.
-#' 
-#' @param acumulado Valor numerico con la cantidad de puntos acumulados en la ronda actual.
-#' 
-#' @param dados_disponibles Valor numerico con la cantidad de dados disponibles para lanzar.
+#' @param puntos  Valor numérico con los puntos totales actuales del jugador. 
+#' @param tiradas Valor numérico con el numero de tirada.
+#' @param acumulado Valor numérico con la cantidad de puntos acumulados en la ronda actual.
+#' @param dados_disponibles Valor numérico con la cantidad de dados disponibles para lanzar.
 #'
 #' @examples
 #' turno("Ana", 150)
@@ -105,13 +99,13 @@ turno <- function(jugador, puntos, tiradas = 0, acumulado = 0, dados_disponibles
 
 #===============================================================================
 
-#' Verificacion de ganador.
+#' Verificación de ganador.
 #' 
 #' @description
 #' Determina si hay un ganador o empate.
 #' 
 #' @details
-#' Evalua si uno o ambos jugadores tienen 1000 puntos totales, entrega un TRUE o FALSE en funcion de ello e imprime un mensaje de victoria en caso de ser verdadero. 
+#' Evalua si uno o ambos jugadores tienen 1000 puntos totales, entrega un TRUE o FALSE en funcion de ello, e imprime un mensaje de victoria en caso de ser verdadero. 
 #'
 #' @param puntos_totales 
 #' @param nombres 
