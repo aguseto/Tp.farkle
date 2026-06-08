@@ -2,12 +2,12 @@
 #       PROGRAMACIÓN 1 - TRABAJO PRÁCTICO - AÑO 2026
 #-------------------------------------------------------------------------------
 # 
-# EQUIPO Nº 34:
+# EQUIPO Nº xx:
 # 
-# - Assales, Giuliano Nicolas
-# - Leguizamon, Agustín Marcos
-# - Mondino, Franco
-# - Naiviat, Mauro
+# - Apellido, nombre
+# - Apellido, nombre
+# - Apellido, nombre
+# - Apellido, nombre
 #
 # ARCHIVO: jugar.R
 #
@@ -37,93 +37,15 @@ library("farkle")
 #-------------------------------------------------------------------------------
 #=========== CARGAR FUNCIONES ==================================================
 
-source("script_funciones_TP.R")
+source("script_funciones.R")
 
 #=========== PROGRAMA ==================================================
-
-pantalla_inicio()
-
-
-###########################################################################################
-###########################################################################################
-jugar_turno <- function(jugador, puntos_actuales){
-  tiradas<-0
-  acumulado <- 0
-  dados_disponibles <- 5
-  turno_activo <- TRUE
-  
-  while(turno_activo){
-    limpiar_consola()
-    
-    turno(jugador, puntos_actuales, tiradas, acumulado, dados_disponibles)
-    
-    tirar <- leer_opciones("¿Tirar dados?", "Si", "No")
-    
-    if (tirar == "2"){
-      if((puntos_actuales + acumulado) > 1000){
-        cat("\nTe pasaste de los 1000 puntos! El acumulado de este turno se pierde.\n")
-        acumulado <- 0
-      }
-      turno_activo <- FALSE
-      if(jugador != nombres[2]){
-        pausa("Turno finalizado.")
-      }
-    }
-    else if (tirar =="1"){
-      resultado_dados <- tirada_dado(dados_disponibles)
-      puntos_tirada <- resultado_dados$puntos
-      dados_usados <- resultado_dados$dados_usados
-      
-      if(puntos_tirada == 0){
-        cat("Sacaste 0 puntos. \nNo salieron ni 1 ni 5\n\n")
-        acumulado <- 0
-        turno_activo <- FALSE
-        if(jugador != nombres[2]){
-          pausa("Turno finalizado")
-        }
-      }
-      else{
-        acumulado <- acumulado + puntos_tirada
-        tiradas <- tiradas + 1
-        dados_disponibles <- dados_disponibles - dados_usados
-        
-        if((puntos_actuales + acumulado) > 1000){
-          cat("Sacaste", puntos_tirada, "puntos.\n\n")
-          cat("\nTe pasaste del puntaje maximo!\n")
-          acumulado <- 0
-          turno_activo <- FALSE
-          if(jugador != nombres[2]){
-            pausa("Turno finalizado")
-          }
-        }
-        else{
-          cat("Sacaste", puntos_tirada, "puntos.\n\n")
-          
-          if(dados_disponibles == 0){
-            cat("\n¡Usaste todos los dados! Recuperas los 5 para tu próxima tirada.\n")
-            dados_disponibles <- 5
-            pausa("Tiro finalizado")
-          }
-          else{
-            pausa("Tiro finalizado")
-          }
-        }
-      }
-    }
-  }
-  return(acumulado)
-}
-###########################################################################################
-###########################################################################################
-
-###########################################################################################
-###########################################################################################
 
 puntos_totales <- c(0,0)
 nro_ronda <- 1
 juego_activo <- TRUE
 
-pantalla_inicio()
+#pantalla_inicio()
 nombres <- seleccionar_jugadores()
 
 while(juego_activo){
@@ -134,6 +56,7 @@ while(juego_activo){
   opcion_menu <- leer_opciones("Elige una opcion:", "Comenzar ronda", "Salir del juego")
   
   if (opcion_menu[1] == "1"){    for(i in 1:2){
+    #COMENTAR SOBRE ESTO
     puntos_ganados <- jugar_turno(jugador=nombres[i], puntos_actuales = puntos_totales[i])
     puntos_totales[i] <- puntos_totales[i] + puntos_ganados
   }
@@ -143,7 +66,7 @@ while(juego_activo){
       break
     }
     
-    pausa("\nRonda finalizada.")
+    pausa("Ronda finalizada.")
     nro_ronda <- nro_ronda + 1
     
   } else if(opcion_menu[1]=="2"){
