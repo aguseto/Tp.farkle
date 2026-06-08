@@ -39,13 +39,13 @@ library("farkle")
 
 source("script_funciones.R")
 
-#=========== PROGRAMA ==================================================
+#=========== PROGRAMA ==========================================================
 
 puntos_totales <- c(0,0)
 nro_ronda <- 1
 juego_activo <- TRUE
 
-#pantalla_inicio()
+pantalla_inicio()
 nombres <- seleccionar_jugadores()
 
 while(juego_activo){
