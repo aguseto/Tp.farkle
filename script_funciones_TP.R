@@ -92,9 +92,9 @@ turno <- function(jugador, puntos, tiradas = 0, acumulado = 0, dados_disponibles
   titulo_turno <-paste0("Turno de ", jugador," con ", puntos, " puntos." )
   titulo(titulo_turno) 
   cat("INFORMACION DEL TURNO\n\n")
-  cat("Tiradas\tAcumulado\tDados disponibles\n")
-  cat("--------\t--------\t-----------------\n")
-  cat(tiradas, "\t", acumulado,"\t",dados_disponibles,"\n\n")
+  cat("Tiradas    Acumulado    Dados disponibles\n")
+  cat("-------    ---------    -----------------\n")
+  cat(tiradas, "          ", acumulado, "            ", dados_disponibles, "\n\n", sep = "")
 }
 
 #===============================================================================
@@ -156,4 +156,71 @@ EVENTOS ESPECIALES
  - Si en una tirada todos los dados suman puntos, el jugador puede volver a tirar con cinco dados.
  - Si en una tirada el jugador supera el puntaje maximo, pierde todo lo acumulado en ese turno.
  - Si ambos jugadores alcanzan el puntaje maximo en la misma ronda, se considera empate.\n")
+}
+
+#=====================================================================================
+
+#' Jugar Turno
+#' @description
+#' Controla el ciclo completo del turno de un jugador. Permite tomar decisiones entre lanzar los dados o plantarse,
+#' actualiza el puntaje acumulado de la ronda, valida que no se exceda el puntaje máximo de 1000 puntos 
+#' y gestiona el reinicio de dados disponibles o la pérdida de puntos si la tirada es cero.
+#'
+#' @param jugador Caracteres con el nombre del jugador.
+#'
+#' @param puntos_actuales Valor numérico con los puntos totales acumulados por el jugador antes de iniciar el turno.
+
+jugar_turno <- function(jugador, puntos_actuales){
+  tiradas<-0
+  acumulado <- 0
+  dados_disponibles <- 5
+  turno_activo <- TRUE
+  
+  while(turno_activo){
+    limpiar_consola()
+    
+    turno(jugador, puntos_actuales, tiradas, acumulado, dados_disponibles)
+    
+    tirar <- leer_opciones("¿Tirar dados?", "Si", "No")
+    
+    if (tirar == "2"){
+      turno_activo <- FALSE
+    }
+    else if (tirar =="1"){
+      resultado_dados <- tirada_dado(dados_disponibles)
+      puntos_tirada <- resultado_dados$puntos
+      dados_usados <- resultado_dados$dados_usados
+      
+      if(puntos_tirada == 0){
+        cat("Sacaste 0 puntos. \nNo salieron ni 1 ni 5\n\n")
+        acumulado <- 0
+        turno_activo <- FALSE
+      }
+      else{
+        acumulado <- acumulado + puntos_tirada
+        tiradas <- tiradas + 1
+        dados_disponibles <- dados_disponibles - dados_usados
+        
+        if((puntos_actuales + acumulado) > 1000){
+          cat("Sacaste", puntos_tirada, "puntos.\n\n")
+          cat("\nTe pasaste del puntaje maximo!\n")
+          acumulado <- 0
+          turno_activo <- FALSE
+        }
+        else{
+          cat("Sacaste", puntos_tirada, "puntos.\n\n")
+          
+          if(dados_disponibles == 0){
+            cat("\n¡Usaste todos los dados! Recuperas los 5 para tu próxima tirada.\n")
+            dados_disponibles <- 5
+          }
+          pausa("Tiro finalizado")
+          }
+        }
+      }
+    }
+    if(jugador != nombres[2]){
+      pausa("Turno finalizado")
+    }
+  return(acumulado)
 }
