@@ -4,10 +4,10 @@
 # 
 # EQUIPO Nº xx:
 # 
-# - Apellido, nombre
-# - Apellido, nombre
-# - Apellido, nombre
-# - Apellido, nombre
+# - Assales, Giuliano Nicolas
+# - Leguizamon, Agustín Marcos
+# - Mondino, Franco
+# - Naiviat, Mauro
 #
 # ARCHIVO: jugar.R
 #
