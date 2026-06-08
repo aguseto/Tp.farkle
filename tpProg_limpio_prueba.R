@@ -2,7 +2,7 @@
 #       PROGRAMACIÓN 1 - TRABAJO PRÁCTICO - AÑO 2026
 #-------------------------------------------------------------------------------
 # 
-# EQUIPO Nº xx:
+# EQUIPO Nº 34:
 # 
 # - Assales, Giuliano Nicolas
 # - Leguizamon, Agustín Marcos
