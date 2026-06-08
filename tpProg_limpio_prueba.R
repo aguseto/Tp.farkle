@@ -56,7 +56,7 @@ while(juego_activo){
   opcion_menu <- leer_opciones("Elige una opcion:", "Comenzar ronda", "Salir del juego")
   
   if (opcion_menu[1] == "1"){    for(i in 1:2){
-    #COMENTAR SOBRE ESTO
+    #Aca ocurren los turnos de cada ronda. Se calculan los puntos del turno y totales de cada jugador
     puntos_ganados <- jugar_turno(jugador=nombres[i], puntos_actuales = puntos_totales[i])
     puntos_totales[i] <- puntos_totales[i] + puntos_ganados
   }
