@@ -58,7 +58,7 @@ titulo_ronda <- function(nro_ronda, nombres, puntos_totales){
 #' @param cantidad_dados Valor numérico con el número de dados a lanzar.
 #'
 #' @returns
-#' 
+#' Entrega una lista de dos elementos, puntos (suma de puntos de la tirada) y dados usados (cantidad de dados que salieron 1 y/o 5)
 #'
 #' @examples
 #' tirada_dado(5)
@@ -137,8 +137,6 @@ verificar_final <- function(puntos_totales, nombres) {
 #' @description
 #' Muestra un mensaje de bienvenida junto con la introducción y reglas del juego Farkle.
 #' 
-#' @returns
-#'
 pantalla_inicio<- function(){
   titulo("F A R K L E")
   texto_lento("BIENVENIDOS
