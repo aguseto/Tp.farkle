@@ -2,12 +2,12 @@
 #       PROGRAMACIÓN 1 - TRABAJO PRÁCTICO - AÑO 2026
 #-------------------------------------------------------------------------------
 # 
-# EQUIPO Nº xx:
+# EQUIPO Nº 34:
 # 
-# - Apellido, nombre
-# - Apellido, nombre
-# - Apellido, nombre
-# - Apellido, nombre
+# - Assales, Giuliano Nicolas
+# - Leguizamon, Agustín Marcos
+# - Mondino, Franco 
+# - Naiviat, Mauro
 #
 # ARCHIVO: jugar.R
 #
